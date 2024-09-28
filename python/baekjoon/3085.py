@@ -5,6 +5,7 @@ n = int(input())
 a = [list(input().strip()) for _ in range(n)]
 
 ans = 0
+
 def check_row(c):
     compar = a[c][0]
     count = 1
@@ -37,9 +38,8 @@ for i in range(n):
 for i in range(n):
     check_col(i)
     
-for i in range(n): # 행
-    for j in range(n): # 열
-        # 오른쪽 -> 마지막 열이 아닐 때만
+for i in range(n):
+    for j in range(n):
         if j != n - 1:
             if a[i][j] != a[i][j + 1]:
                 a[i][j], a[i][j + 1] = a[i][j + 1], a[i][j]
@@ -47,7 +47,6 @@ for i in range(n): # 행
                 check_col(j)
                 check_col(j + 1)
                 a[i][j], a[i][j + 1] = a[i][j + 1], a[i][j]
-        # 아래쪽 -> 마지막 행이 아닐 때만
         if i != n - 1:
             if a[i][j] != a[i + 1][j]:
                 a[i][j], a[i + 1][j] = a[i + 1][j], a[i][j]
