@@ -4,7 +4,7 @@ sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-a = [[] for _ in rsange(n)]
+a = [[] for _ in range(n)]
 
 for _ in range(m):
     u, v = map(int, input().split())
