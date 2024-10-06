@@ -16,10 +16,10 @@ for _ in range(n - 1):
 
 order = list(map(lambda x: int(x) - 1, input().split()))
 
-m = 1
+m = 1 # 큐의 크기
 q.append(0)
 check[0] = True
-for i in range(n):
+for i in range(n): # deque > pop을 의미
     x = q.popleft()
     if x != order[i]:
         print(0)
@@ -35,5 +35,5 @@ for i in range(n):
             exit(0)
         q.append(order[m + j])
         check[order[m + j]] = True
-    m += cnt
+    m += cnt # deque > push를 의미
 print(1)
