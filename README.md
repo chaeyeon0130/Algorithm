@@ -8,3 +8,4 @@
 | 11.07 | [행렬](https://www.acmicpc.net/problem/1080) |
 | 11.08 | [전구와 스위치](https://www.acmicpc.net/problem/2138) |
 | 11.09 | [동전 뒤집기](https://www.acmicpc.net/problem/1285) |
+| 11.10 | [종이의 개수](https://www.acmicpc.net/problem/1780) |
