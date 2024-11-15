@@ -1,68 +1,37 @@
-# # bfs
-# import sys
-# from collections import deque, Counter
-# from functools import reduce
-
-# dx = [0, 0, 1, -1]
-# dy = [1, -1, 0, 0]
-# def bfs(i, j, cnt):
-#     q = deque()
-#     q.append((i, j))
-#     d[i][j] = cnt
-#     while q:
-#         i, j = q.popleft()
-#         for k in range(4):
-#             nx, ny = i + dx[k], j + dy[k]
-#             if 0 <= nx < n and 0 <= ny < n:
-#                 if a[nx][ny] == 1 and d[nx][ny] == 0:
-#                     q.append((nx, ny))
-#                     d[nx][ny] = cnt
-            
-# input = sys.stdin.readline
-# n = int(input())
-# a = [list(map(int, list(input().strip()))) for _ in range(n)]
-# d = [[0] * n for _ in range(n)]
-# cnt = 0
-# for i in range(n):
-#     for j in range(n):
-#         if a[i][j] == 1 and d[i][j] == 0:
-#             cnt += 1
-#             bfs(i, j, cnt)
-
-# ans = reduce(lambda x, y : x + y, d)
-# ans = [x for x in ans if x > 0]
-# ans = sorted(list(Counter(ans).values()))
-# print(cnt)
-# print('\n'.join(map(str, ans)))
-
-# dfs
 import sys
-from collections import deque, Counter
-from functools import reduce
+from collections import deque
 
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
-def dfs(i, j, cnt):
-    d[i][j] = cnt
-    for k in range(4):
-        nx, ny = i + dx[k], j + dy[k]
-        if 0 <= nx < n and 0 <= ny < n:
-            if a[nx][ny] == 1 and d[nx][ny] == 0:
-                dfs(nx, ny, cnt)
-            
 input = sys.stdin.readline
 n = int(input())
-a = [list(map(int, list(input().strip()))) for _ in range(n)]
-d = [[0] * n for _ in range(n)]
-cnt = 0
+arr = [list(map(int, list(input().strip()))) for _ in range(n)]
+
+queue = deque()
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+def bfs():
+    count = 0
+    while queue:
+        x, y = queue.popleft()
+        count += 1
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < n and 0 <= ny < n and arr[nx][ny] == 1:
+                arr[nx][ny] = -1
+                queue.append((nx, ny))
+    return count
+
+index = 0
+count = []
 for i in range(n):
     for j in range(n):
-        if a[i][j] == 1 and d[i][j] == 0:
-            cnt += 1
-            dfs(i, j, cnt)
+        if arr[i][j] == 1:
+            index += 1
+            arr[i][j] = -1
+            queue.append((i, j))
+            index_count = bfs()
+            count.append(index_count)
 
-ans = reduce(lambda x, y : x + y, d)
-ans = [x for x in ans if x > 0]
-ans = sorted(list(Counter(ans).values()))
-print(cnt)
-print('\n'.join(map(str, ans)))
+print(index)
+count.sort()
+print(*count, sep = '\n')
