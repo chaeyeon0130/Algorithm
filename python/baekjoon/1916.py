@@ -27,7 +27,7 @@ dist = [INF] * (n + 1)
 
 for _ in range(m):
     v1, v2, c = map(int, input().split())
-    graph[v1].append([c, v2])
+    graph[v1].append((c, v2))
 
 start, end = map(int, input().split())
 
