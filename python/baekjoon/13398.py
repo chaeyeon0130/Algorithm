@@ -6,20 +6,20 @@ n = int(input())
 a = list(map(int, input().split()))
 
 d = [0] * n
-rd = [0] * n
-# 연속합 구하기(앞에서부터)
+id = [0] * n
 d[0] = a[0]
 for i in range(1, n):
-    d[i] = max(a[i], d[i - 1] + a[i])
+    d[i] = a[i]
+    if d[i - 1] + a[i] > d[i]:
+        d[i] = d[i - 1] + a[i]
 
-# 연속합 구하기(뒤에서부터)
-rd[n - 1] = a[n - 1]
-for i in range(n - 2, -1, -1):
-    rd[i] = max(a[i], rd[i + 1] + a[i])
+id[n - 1] = a[n - 1]
+for i in reversed(range(n - 1)):
+    id[i] = a[i]
+    if id[i + 1] + a[i] > id[i]:
+        id[i] = id[i + 1] + a[i]
 
-# i를 제외한 연속합 구하기
-ans = max(d)
+result = max(d)
 for i in range(1, n - 1):
-    ans = max(ans, d[i - 1] + rd[i + 1])
-        
-print(ans)
+    result = max(result, d[i - 1] + id[i + 1])
+print(result)
