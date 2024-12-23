@@ -1,34 +1,32 @@
-# import sys
-
-# input = sys.stdin.readline
-
-# a = [int(input()) for _ in range(9)]
-
-# for i in range(9):
-#     for j in range(9):
-#         if i == j:
-#             continue
-#         sum = 0
-#         for k in range(9):
-#             if k != i and k != j:
-#                 sum += a[k]
-#         if sum == 100:
-#             result = [a[k] for k in range(9) if k != i and k != j]
-#             result.sort()
-#             for num in result:
-#                 print(num)
-#             exit(0)
-            
 import sys
+from itertools import combinations
 
-a = [int(input()) for _ in range(9)]
-a.sort()
-total = sum(a)
-for i in range(0, 9):
-    for j in range(i + 1, 9):
-        if total - a[i] - a[j] == 100:
-            for k in range(9):
-                if i == k or j == k:
-                    continue
-                print(a[k])
-            exit(0)
+input = sys.stdin.readline
+arr = [int(input()) for _ in range(9)]
+# combi = list(combinations(arr, 7))
+# for i in combi:
+#     if sum(i) == 100:
+#         i = list(i)
+#         i.sort()
+#         for j in i:
+#             print(j)
+#         break
+
+ans_list = []
+def combi(n, ans, r):
+    if n == len(arr):
+        if len(ans) == r:
+            temp = [i for i in ans]
+            ans_list.append(temp)
+        return
+    ans.append(arr[n])
+    combi(n + 1, ans, r)
+    ans.pop()
+    combi(n + 1, ans, r)
+combi(0, [], 7)
+for i in ans_list:
+    if sum(i) == 100:
+        i.sort()
+        for j in i:
+            print(j)
+        break
