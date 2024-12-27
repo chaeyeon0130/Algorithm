@@ -1,21 +1,13 @@
-import sys
-
-input = sys.stdin.readline
+def cal(m, n, x, y):
+    k = x
+    while k <= m * n:
+       if (k - x) % m == 0 and (k - y) % n == 0:
+           return k
+       k += m
+    return -1
 
 t = int(input())
-
-while t > 0:
+for _ in range(t):
     m, n, x, y = map(int, input().split())
-    x -= 1
-    y -= 1
-    
-    valid = False
-    for k in range(x, m * n, m):
-        if k % n == y:
-            valid = True
-            print(k + 1)
-            break
-    if not valid:
-        print(-1)
-    
-    t -= 1
+    res = cal(m, n, x, y)
+    print(res)
