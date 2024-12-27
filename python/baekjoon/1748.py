@@ -3,15 +3,16 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-len = len(str(n))
 
-ans = 0
-for i in range(1, len + 1):
-    if i == len:
-        num = n - 10 ** (len - 1) + 1
-        ans += num * len
-    else:
-        num = 10 ** i - 10 ** (i - 1)
-        ans += num * i
-        
-print(ans)
+if n <= 9:
+    print(n)
+    exit(0)
+
+i = 1
+res = 0
+while 10 ** i <= n:
+    res += ((10 ** i) - (10 ** (i - 1))) * i
+    i += 1
+if n >= 10 ** (i - 1):
+    res += ((n - 10 ** (i - 1)) + 1) * i
+print(res)
